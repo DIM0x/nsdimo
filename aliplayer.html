@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<!--引入css-->
+	<link rel="stylesheet" href="//g.alicdn.com/de/prismplayer/2.2.0/skins/default/aliplayer-min.css" />
+  </head>
+  <body>
+    
+    <div class="prism-player video-container" id="J_prismPlayer"></div>
+    <!--引入js-->
+    <script type="text/javascript" src="//g.alicdn.com/de/prismplayer/2.2.0/aliplayer-min.js"></script>
+    <script>
+    	var player = null;
+	    if(player){
+	          player.dispose();
+	    }
+		player = new Aliplayer({
+	        id: "J_prismPlayer",
+	        width: "300px",
+	        height: "400px",
+	        autoplay: true,   //自动播放
+	        rePlay:false,
+	        isLive:true,
+	        useH5Prism:true,
+	        useFlashPrism:false,
+	        stashInitialSizeForFlv:30,
+	        trackLog:false,
+	        source'rtmp://9.tcp.cpolar.top:13850/live/stream',   //rtmp格式的地址
+	    },function(player){
+	        player.on("ready",function(e){
+	        });
+	        player.on("canplaythrough", function (e) {
+	          var sample = player._flv.getFirstSample();
+	          var pts = sample && sample.pts ? sample.pts : 0;
+	          var startTime = player.getProgramDateTime();
+	        });
+		}
+	);
+   </script>
+  </body>
+</html>
